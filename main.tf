@@ -46,7 +46,10 @@ resource "aws_s3_bucket" "www_bucket" {
 
 resource "aws_s3_bucket_public_access_block" "www_bucket" {
   bucket              = aws_s3_bucket.www_bucket.id
-  block_public_policy = true
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
 }
 
 resource "aws_s3_bucket_website_configuration" "www_bucket" {
