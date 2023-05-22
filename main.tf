@@ -58,6 +58,7 @@ resource "aws_s3_bucket_ownership_controls" "www_bucket" {
 resource "aws_s3_bucket_policy" "www_bucket" {
   bucket = aws_s3_bucket.www_bucket.id
   policy = data.aws_iam_policy_document.s3_public_access_policy.json
+  block_public_policy     = false
 }
 
 data "aws_iam_policy_document" "s3_public_access_policy" {
