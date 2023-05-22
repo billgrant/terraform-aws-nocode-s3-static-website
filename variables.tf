@@ -1,6 +1,7 @@
 variable "prefix" {
   type        = string
   description = "This prefix will be included in the name of most resources."
+  default = keep
 }
 
 variable "region" {
@@ -12,6 +13,7 @@ variable "region" {
 variable "env" {
   type        = string
   description = "Value for the environment tag."
+  default = me
 }
 
 variable "hashi_products" {
