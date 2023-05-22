@@ -1,2 +1,2 @@
 env = "keep"
-prefix "me"
+prefix = "me"
