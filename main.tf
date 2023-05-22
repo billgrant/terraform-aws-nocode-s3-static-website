@@ -38,6 +38,7 @@ resource "random_integer" "product" {
 resource "aws_s3_bucket" "www_bucket" {
   bucket_prefix = "${var.prefix}-hashicafe-website-${lower(var.env)}-"
   force_destroy = true
+  block_public_policy = false
 }
 
 resource "aws_s3_bucket_website_configuration" "www_bucket" {
@@ -58,7 +59,6 @@ resource "aws_s3_bucket_ownership_controls" "www_bucket" {
 resource "aws_s3_bucket_policy" "www_bucket" {
   bucket = aws_s3_bucket.www_bucket.id
   policy = data.aws_iam_policy_document.s3_public_access_policy.json
-  block_public_policy     = false
 }
 
 data "aws_iam_policy_document" "s3_public_access_policy" {
