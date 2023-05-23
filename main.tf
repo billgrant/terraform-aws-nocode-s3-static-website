@@ -105,7 +105,7 @@ resource "aws_s3_bucket_versioning" "www_bucket" {
 resource "aws_s3_object" "index" {
   key    = "index.html"
   bucket = aws_s3_bucket.www_bucket.id
-  content = templatefile("files/index.html", {
+  content = templatefile("${path.module}/files/index.html", {
     product_name  = var.hashi_products[random_integer.product.result].name
     product_color = var.hashi_products[random_integer.product.result].color
     product_image = var.hashi_products[random_integer.product.result].image_file
@@ -114,7 +114,7 @@ resource "aws_s3_object" "index" {
 }
 
 resource "aws_s3_object" "images" {
-  for_each     = fileset("files/img/", "*.png")
+  for_each     = fileset("${path.module}/files/img/", "*.png")
   bucket       = aws_s3_bucket.www_bucket.id
   key          = "img/${each.value}"
   source       = "files/img/${each.value}"
